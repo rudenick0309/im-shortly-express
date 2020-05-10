@@ -1,3 +1,4 @@
+// sequelize model:create --name user --attributes "name:string, email:string, password:string, salt:string"
 const express = require('express');
 const bodyParser = require('body-parser');
 
