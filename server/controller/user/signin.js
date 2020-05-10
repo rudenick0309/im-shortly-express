@@ -13,6 +13,9 @@ module.exports = {
     // 없다? -> 에러 메세지 출력
 
     /*users.findOne .then .then
+        where :body.email
+
+        .dataValues.password (해시된 비밀번호)
      */
     res.end();
   },

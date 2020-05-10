@@ -8,7 +8,8 @@ module.exports = {
     //   // Do something
     // });
 
-    //유저의 세션 삭제    req.session.destroy();
+    //유저의 세션 삭제    req.session.destroy();  or  req.session.destroy() + res.clearCookie('sid'); , app.js에서 쿠키 시간을 설정해을 때
+
     //넘겨 줄 데이터는 없.
 
     //res.redirect('/')으로 끝내기

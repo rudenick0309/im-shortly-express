@@ -31,6 +31,10 @@ app.use(
     store: new FileStore(),
   })
 );
+//session 설정에 추가할 부분
+// cookie: {
+//   maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
+// }
 
 app.use(cookieParser());
 app.use(bodyParser.json());
