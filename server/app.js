@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const FileStore = require('session-file-store')(session);
 
 const userRouter = require('./routes/user');
 const linksRouter = require('./routes/links');
@@ -15,11 +16,18 @@ const morgan = require('morgan');
 const app = express();
 const port = 3001;
 
+// secret: 세션을 암호화 해줌
+// resave: 세션을 항상 저장할지 여부를 정하는 값. (false 권장)
+// saveUninitialized: 초기화되지 않은채 스토어에 저장되는 세션
+// store: 데이터를 저장되는 형식
+// 서버에서 세션에 접근을 하려면 req.session을 이용하면 됩니다.
+
 app.use(
   session({
     secret: '@codestates',
     resave: false,
     saveUninitialized: true,
+    store: new FileStore(),
   })
 );
 
@@ -53,7 +61,7 @@ app.get('/D*', (req, res) => {
     .then((result) => {
       if (result) {
         result.update({
-          visits: result.visits + 1,
+          visits: result.visits + 1, //장원님 레퍼런스에서 num.  https://medium.com/wasd/node-js%EC%99%80-cookie-session%EC%9C%BC%EB%A1%9C-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EB%B3%B4-%EC%A0%80%EC%9E%A5-part-2-dbe84c2f13e4
         });
         res.redirect(result.url);
       } else {

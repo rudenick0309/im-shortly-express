@@ -8,7 +8,7 @@ module.exports = {
     //   // Do something
     // });
 
-    //유저의 세션 삭제
+    //유저의 세션 삭제    req.session.destroy();
     //넘겨 줄 데이터는 없.
 
     //res.redirect('/')으로 끝내기
