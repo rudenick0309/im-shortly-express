@@ -35,11 +35,6 @@ module.exports = {
     // 회원정보를 데이터베이스에서 확인하고, fineOne으로
     // 회원의 id를 session에 담아주도록 구현하세요
 
-<<<<<<< HEAD
-        .dataValues.password (해시된 비밀번호)
-     */
-    res.end();
-=======
     users
       .findOne({
         where: {
@@ -57,6 +52,5 @@ module.exports = {
           res.status(404).send('unvalid user');
         }
       });
->>>>>>> 478e52a132674b6e817cf57a21e2754befd57174
   },
 };
