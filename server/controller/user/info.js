@@ -2,13 +2,6 @@ const { users } = require('../../models');
 
 module.exports = {
   get: (req, res) => {
-<<<<<<< HEAD
-    // TODO : 유저의 session을 이용하여, 데이터베이스에 있는 정보를 제공하도록 구현하세요.
-
-    //무엇이 시작점?
-    //req.body.session으로 findOne, 특정 유저일테니.? findAll?
-    res.end();
-=======
     // TODO : 유저의 session을 이용하여,
     // 데이터베이스에 있는 정보를 제공하도록 구현하세요.
     // 1) 데이터 베이스에 정보가 있는지 확인
@@ -17,21 +10,30 @@ module.exports = {
     // console.log(req.session.num);
     // console.log(req.body.id);
 
+    // console.log('123', req.session.num.id);
+    if (!req.session.userid) {
+      console.log('들어옴');
+      res.status(401).send('need user session');
+    }
+
     users
-      .findOne({ where: { id: req.session.num } })
+      .findOne({ where: { email: req.session.userid.email } })
       .then((data) => {
-        if (data) {
-          console.log(data.dataValues);
-          res.status(200).send(data.dataValues);
-        } else {
-          console.log(session);
-          res.status(401).send('need user session');
-          // return 'Unauthorized';
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+        res.status(200).json(data);
+        // console.log(77, data);
       });
->>>>>>> 9dbfa1945799d070e0546948665b7124516617c5
+    // console.log(134, req.session.userid.email);
+    // users.findOne({ where: { id: req.session.userid.id } }).then((data) => {
+    //   if (data) {
+    //     // console.log('세션', req.session);
+    //     // console.log(data.dataValues);
+    //     console.log(Object.keys(data.dataValues));
+    //     res.status(200).send(data.dataValues);
+    //   } else {
+    //     // console.log('zz', data);
+    //     // return 'Unauthorized';
+    //     res.status(500).send('need usersdfsdf session');
+    //   }
+    // });
   },
 };

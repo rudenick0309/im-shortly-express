@@ -1,7 +1,7 @@
 const { users } = require('../../models');
 const crypto = require('crypto');
 
-const crypto = require('crypto');
+// const crypto = require('crypto');
 
 module.exports = {
   post: (req, res) => {
@@ -30,8 +30,9 @@ module.exports = {
       .then((result) => {
         // console.log(result.id);
         if (result) {
-          req.session.num = result.id;
-          res.status(200).json({ id: req.session.num });
+          req.session.userid = result;
+          console.log(112414, req.session.userid.id);
+          res.status(200).json({ id: req.session.userid.id });
         } else {
           res.status(404).send('unvalid user');
         }
