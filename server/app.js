@@ -48,7 +48,7 @@ app.use(
 );
 
 // ? POSTMAN을 통한 test에 필요할지도 모릅니다. logging을 활용하세요.
-app.use(morgan('dev')); //통신코드
+// app.use(morgan('dev')); //통신코드
 
 // TODO : GET / 요청에 대한 응답을 작성해주세요. (api 구현을 가볍게 시작해보세요.)
 // app. ...

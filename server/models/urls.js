@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       hooks: {
         afterValidate: (data, options) => {
-          console.log('해쉬 전', data.code, 333, data.password);
+          // console.log('해쉬 전', data.code, 333, data.password);
           var shasum = crypto.createHash('sha1');
           shasum.update(data.url);
           data.code = 'D' + shasum.digest('hex').slice(0, 5);
-          console.log('임의', data.code, 77, data.url, 777, shasum);
+          // console.log('임의', data.code, 77, data.url, 777, shasum);
         },
       },
     }

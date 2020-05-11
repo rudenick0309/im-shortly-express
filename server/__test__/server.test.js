@@ -20,7 +20,7 @@ describe('Implemented testcase', () => {
     await urls.create(urlsFixture[0]);
   });
   describe('GET /links', () => {
-    it('should respond with Url list', done => {
+    it('should respond with Url list', (done) => {
       chai
         .request(app)
         .get('/links')
@@ -41,7 +41,7 @@ describe('Implemented testcase', () => {
                 'visits',
                 'updatedAt',
                 'createdAt',
-                'code'
+                'code',
               ]);
             });
           } else {
@@ -54,13 +54,13 @@ describe('Implemented testcase', () => {
   });
 
   describe('POST /links', () => {
-    it('should respond with Url', done => {
+    it('should respond with Url', (done) => {
       chai
         .request(app)
         .post('/links')
         .set({ host: 'localhost:8080' })
         .send({
-          url: 'https://velopert.com'
+          url: 'https://velopert.com',
         })
         .end((err, res) => {
           if (err) {
@@ -76,7 +76,7 @@ describe('Implemented testcase', () => {
             'visits',
             'updatedAt',
             'createdAt',
-            'code'
+            'code',
           ]);
 
           expect(res.body.url).to.equal('https://velopert.com');
@@ -89,7 +89,7 @@ describe('Implemented testcase', () => {
   });
 
   describe('GET /D*', () => {
-    it('should redirect Url to baseUrl + code', done => {
+    it('should redirect Url to baseUrl + code', (done) => {
       chai
         .request(app)
         .get('/D92c6d')
@@ -114,7 +114,7 @@ describe('Bare Minimum Requirements', () => {
   });
 
   describe('GET /', () => {
-    it('should respond with Success message', done => {
+    it('should respond with Success message', (done) => {
       chai
         .request(app)
         .get('/')
@@ -131,14 +131,14 @@ describe('Bare Minimum Requirements', () => {
   });
 
   describe('POST /user/signup', () => {
-    it('should respond user info to signup data', done => {
+    it('should respond user info to signup data', (done) => {
       chai
         .request(app)
         .post('/user/signup')
         .send({
           email: 'test@gmail.com',
           username: 'testuser',
-          password: 'asdfasdf'
+          password: 'asdfasdf',
         })
         .end((err, res) => {
           if (err) {
@@ -152,20 +152,20 @@ describe('Bare Minimum Requirements', () => {
             'password',
             'username',
             'updatedAt',
-            'createdAt'
+            'createdAt',
           ]);
           done();
         });
     });
 
-    it('should respond conflict with existing user email', done => {
+    it('should respond conflict with existing user email', (done) => {
       chai
         .request(app)
         .post('/user/signup')
         .send({
           email: 'duhyun.kim@codestates.com',
           username: 'duhyundev',
-          password: '1234'
+          password: '1234',
         })
         .end((err, res) => {
           if (err) {
@@ -180,13 +180,13 @@ describe('Bare Minimum Requirements', () => {
   });
 
   describe('POST /user/signin', () => {
-    it('should respond user id to signin data', done => {
+    it('should respond user id to signin data', (done) => {
       chai
         .request(app)
         .post('/user/signin')
         .send({
           email: 'duhyun.kim@codestates.com',
-          password: '1234'
+          password: '1234',
         })
         .end((err, res) => {
           expect(res.body).has.all.keys(['id']);
@@ -194,13 +194,13 @@ describe('Bare Minimum Requirements', () => {
         });
     });
 
-    it('should respond NOT FOUND with unvalid user', done => {
+    it('should respond NOT FOUND with unvalid user', (done) => {
       chai
         .request(app)
         .post('/user/signin')
         .send({
           email: 'foo@gmail.com',
-          password: 'swiss'
+          password: 'swiss',
         })
         .end((err, res) => {
           expect(res).to.have.status(404);
@@ -211,18 +211,18 @@ describe('Bare Minimum Requirements', () => {
   });
 
   describe('GET /user/info', () => {
-    it('should return user data with request of session.userid', done => {
+    it('should return user data with request of session.userid', (done) => {
       const agent = chai.request.agent(app);
       agent
         .post('/user/signin')
         .send({
           email: 'duhyun.kim@codestates.com',
-          password: '1234'
+          password: '1234',
         })
-        .then(function(res) {
+        .then(function (res) {
           agent
             .get('/user/info')
-            .then(function(res2) {
+            .then(function (res2) {
               // should get status 200, which indicates req.session existence.
               expect(res2).to.have.status(200);
               expect(res2.body).has.all.keys([
@@ -231,34 +231,34 @@ describe('Bare Minimum Requirements', () => {
                 'password',
                 'username',
                 'updatedAt',
-                'createdAt'
+                'createdAt',
               ]);
               done();
             })
-            .catch(err => {
+            .catch((err) => {
               done(err);
             });
         });
     });
 
-    it('should return Unauthorized if request without session.userid', done => {
+    it('should return Unauthorized if request without session.userid', (done) => {
       const agent = chai.request.agent(app);
       agent
         .post('/user/signin')
         .send({
           email: 'foo@gmail.com',
-          password: 'swiss'
+          password: 'swiss',
         })
-        .then(function(res) {
+        .then(function (res) {
           agent
             .get('/user/info')
-            .then(function(res2) {
+            .then(function (res2) {
               // should get status 200, which indicates req.session existence.
               expect(res2).to.have.status(401);
               expect(res2.text).to.equal('need user session');
               done();
             })
-            .catch(err => {
+            .catch((err) => {
               done(err);
             });
         });
@@ -266,7 +266,7 @@ describe('Bare Minimum Requirements', () => {
   });
 
   describe('POST /user/signout', () => {
-    it('should redirect {BASE_URL}/ to signout', done => {
+    it('should redirect {BASE_URL}/ to signout', (done) => {
       chai
         .request(app)
         .post('/user/signout')
