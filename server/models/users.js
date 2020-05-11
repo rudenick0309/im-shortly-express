@@ -13,13 +13,12 @@ module.exports = (sequelize, DataTypes) => {
     {
       hooks: {
         afterValidate: (data, options) => {
-          console.log(data);
-          // const salt = 'sunjoo';
-          // const rawHash = crypto
-          //   .createHmac('sha256', salt)
-          //   .update(data.dataValues.password)
-          //   .digest('hex');
-          // data.dataValues.password = rawHash;
+          const salt = 'jangwon';
+          const encryptoPassword = crypto
+            .createHmac('sha256', salt)
+            .update(data.password)
+            .digest('hex');
+          data.password = encryptoPassword;
         },
       },
     }

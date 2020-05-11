@@ -4,8 +4,6 @@ const crypto = require('crypto');
 
 module.exports = {
   post: (req, res) => {
-    // TODO : 유저가 로그인을 했을 때, 회원정보를 데이터베이스에서 확인하고, 회원의 id를 session에 담아주도록 구현하세요.
-
     // 클라이언트에서 계정 정보를 입력
     // 우선 id 검증
     // 잇다? -> 비번 검증
@@ -15,23 +13,39 @@ module.exports = {
     // 없다? -> 에러 메세지 출력
 
     /*users.findOne .then .then // 
-        where :body.email
+    where :body.email
+    
+    .dataValues.password (해시된 비밀번호)
+    */
 
-        .dataValues.password (해시된 비밀번호)
-     */
-
-    const salt = 'sunjoo';
-    const rawHash = crypto
+    const password = req.body.password;
+    const salt = 'jangwon';
+    const encryptoPassword = crypto
       .createHmac('sha256', salt)
-      .update(req.body.password)
+      .update(password)
       .digest('hex');
 
-    users
-      .findOne({ where: { email: req.body.email, password: rawHash } })
-      .then((data) => {
-        console.log(data);
-      });
+    // user의 아이디 찾음
+    // TODO : 유저가 로그인을 했을 때, 로그인 실패 ->
+    // 회원정보를 데이터베이스에서 확인하고, fineOne으로
+    // 회원의 id를 session에 담아주도록 구현하세요
 
-    res.end();
+    users
+      .findOne({
+        where: {
+          email: req.body.email,
+          password: req.body.password,
+        },
+      })
+      .then((d) => {
+        // 실패 했을 경우 data가 null
+        // 성공 했을 경우 ... data.id
+        if (d) {
+          req.session.user = d.id;
+          res.status(200).send(JSON.stringify({ id: req.session.user }));
+        } else {
+          res.status(404).send('unvalid user');
+        }
+      });
   },
 };
