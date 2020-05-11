@@ -4,11 +4,6 @@ const crypto = require('crypto');
 
 module.exports = {
   post: (req, res) => {
-<<<<<<< HEAD
-    // TODO : 유저가 로그인을 했을 때, 회원정보를 데이터베이스에서 확인하고, 회원의 id를 session에 담아주도록 구현하세요.
-
-=======
->>>>>>> 478e52a132674b6e817cf57a21e2754befd57174
     // 클라이언트에서 계정 정보를 입력
     // 우선 id 검증
     // 잇다? -> 비번 검증
