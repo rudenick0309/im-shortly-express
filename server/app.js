@@ -28,7 +28,10 @@ app.use(
     secret: '@codestates',
     resave: false,
     saveUninitialized: true,
+<<<<<<< HEAD
     store: new FileStore(),
+=======
+>>>>>>> 7f1f002c60e1ca2d285c519cb93bc4ceb8d28466
   })
 );
 //session 설정에 추가할 부분
@@ -66,7 +69,11 @@ app.get('/D*', (req, res) => {
     .then((result) => {
       if (result) {
         result.update({
+<<<<<<< HEAD
           visits: result.visits + 1, //장원님 레퍼런스에서 num.  https://medium.com/wasd/node-js%EC%99%80-cookie-session%EC%9C%BC%EB%A1%9C-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EB%B3%B4-%EC%A0%80%EC%9E%A5-part-2-dbe84c2f13e4
+=======
+          visits: result.visits + 1,
+>>>>>>> 7f1f002c60e1ca2d285c519cb93bc4ceb8d28466
         });
         res.redirect(result.url);
       } else {
