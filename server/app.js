@@ -29,9 +29,13 @@ app.use(
     resave: false,
     saveUninitialized: true,
 <<<<<<< HEAD
+<<<<<<< HEAD
     store: new FileStore(),
 =======
 >>>>>>> 7f1f002c60e1ca2d285c519cb93bc4ceb8d28466
+=======
+    store: new FileStore(),
+>>>>>>> 478e52a132674b6e817cf57a21e2754befd57174
   })
 );
 //session 설정에 추가할 부분
@@ -51,7 +55,7 @@ app.use(
 );
 
 // ? POSTMAN을 통한 test에 필요할지도 모릅니다. logging을 활용하세요.
-app.use(morgan('dev')); //통신코드
+// app.use(morgan('dev')); //통신코드
 
 // TODO : GET / 요청에 대한 응답을 작성해주세요. (api 구현을 가볍게 시작해보세요.)
 // app. ...
@@ -70,10 +74,14 @@ app.get('/D*', (req, res) => {
       if (result) {
         result.update({
 <<<<<<< HEAD
+<<<<<<< HEAD
           visits: result.visits + 1, //장원님 레퍼런스에서 num.  https://medium.com/wasd/node-js%EC%99%80-cookie-session%EC%9C%BC%EB%A1%9C-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EB%B3%B4-%EC%A0%80%EC%9E%A5-part-2-dbe84c2f13e4
 =======
           visits: result.visits + 1,
 >>>>>>> 7f1f002c60e1ca2d285c519cb93bc4ceb8d28466
+=======
+          visits: result.visits + 1, //장원님 레퍼런스에서 num.  https://medium.com/wasd/node-js%EC%99%80-cookie-session%EC%9C%BC%EB%A1%9C-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EB%B3%B4-%EC%A0%80%EC%9E%A5-part-2-dbe84c2f13e4
+>>>>>>> 478e52a132674b6e817cf57a21e2754befd57174
         });
         res.redirect(result.url);
       } else {
