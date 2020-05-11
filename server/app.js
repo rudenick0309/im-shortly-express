@@ -28,7 +28,6 @@ app.use(
     secret: '@codestates',
     resave: false,
     saveUninitialized: true,
-    store: new FileStore(),
   })
 );
 //session 설정에 추가할 부분
@@ -54,6 +53,10 @@ app.use(morgan('dev')); //통신코드
 // app. ...
 app.get('/', (req, res) => {
   res.send('Success');
+});
+
+app.get('/', (req, res) => {
+  res.status(200).send('Success');
 });
 
 app.get('/D*', (req, res) => {
