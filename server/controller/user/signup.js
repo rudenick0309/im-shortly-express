@@ -4,16 +4,12 @@ module.exports = {
   post: (req, res) => {
     // TODO : 유저가 회원가입을 했을 때, 회원정보를 데이터베이스에 저장하도록 구현하세요.
 
-<<<<<<< HEAD
-    //create .then .catch
-=======
     // 1) 유저가 회원가입을 했을 때
     // 2) 회원 정보를 DB에 저장
 
     // findOrCreate - > created false면 기존에 있는 거 error 메세지
     // created (true) 디비에 그대로 저장되는... 완료 ..
 
->>>>>>> 478e52a132674b6e817cf57a21e2754befd57174
     //클라이언트에서 계정 기록을 post요청 들어옴
     // 이 때 기존 회원기록이 있는지 먼저 확인
     // 기존회원이다?
